@@ -1,0 +1,33 @@
+def ohms_law_calculator():
+    print("Ohm's Law Calculator")
+    print("Enter two known values (V = Voltage, I = Current, R = Resistance).")
+
+    values = input("Enter known values (e.g., V=12, I=2): ").replace(" ", "").split(",")
+
+    data = {}
+    for item in values:
+        key, value = item.split("=")
+        data[key.upper()] = float(value)
+
+    if "V" in data and "I" in data:
+        data["R"] = round(data["V"] / data["I"], 2)
+        print(f"Calculated Resistance (R): {data['R']} Ω")
+
+    elif "V" in data and "R" in data:
+        data["I"] = round(data["V"] / data["R"], 2)
+        print(f"Calculated Current (I): {data['I']} A")
+
+    elif "I" in data and "R" in data:
+        data["V"] = round(data["I"] * data["R"], 2)
+        print(f"Calculated Voltage (V): {data['V']} V")
+
+    else:
+        print("Invalid input. Please enter exactly two known values.")
+
+    # Optional: Calculate Power
+    if "V" in data and "I" in data:
+        power = round(data["V"] * data["I"], 2)
+        print(f"Power (P): {power} W")
+
+# Run the calculator
+ohms_law_calculator()
